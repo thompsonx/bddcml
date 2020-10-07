@@ -4,7 +4,7 @@ include ../make.inc
 # include files needed
 # libraries needed
 LIBS = $(BDDCML_LINK_SEQUENCE) 
-EXAMPLES = bddcml_global bddcml_local poisson_on_cube
+EXAMPLES = bddcml_global bddcml_local poisson_on_cube poisson_on_cube_hack
 ##############################################################
 # GNU Make automatic variables:
 # $@ - target
@@ -22,6 +22,11 @@ poisson_on_cube.o: ../src/module_utils.mod
 # building binaries
 poisson_on_cube: \
    poisson_on_cube.o \
+   $(LIBBDDCML)
+	$(BDDCML_MPFC) $(BDDCML_MPFFLAGS) -o $@ $^ $(LIBS) 
+
+poisson_on_cube_hack: \
+   poisson_on_cube_hack.o \
    $(LIBBDDCML)
 	$(BDDCML_MPFC) $(BDDCML_MPFFLAGS) -o $@ $^ $(LIBS) 
 

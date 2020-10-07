@@ -327,7 +327,11 @@ program poisson_on_cube
       if (nlevels.eq.2) then
          nsublev(1) = nsub
          nsublev(2) = 1
-      else if (nlevels.gt.2) then
+      else if (nlevels.eq.3) then
+          nsublev(1) = nsub
+          nsublev(2) = 1
+          nsublev(3) = 1
+      else if (nlevels.gt.3) then
          ! determine coarsening factor
          coarsening = nsub**(1._kr/(nlevels-1))
          ! prescribe number of subdomains on levels so that coarsening is fixed between levels
